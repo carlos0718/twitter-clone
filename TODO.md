@@ -21,29 +21,27 @@
 
 ## Base de Datos & Modelos
 
-- [ ] Schema Prisma: modelo `User` (id, username, email, passwordHash, bio, avatar, createdAt)
-- [ ] Schema Prisma: modelo `Tweet` (id, content 280 chars, authorId, createdAt)
-- [ ] Schema Prisma: modelo `Follow` (followerId, followingId, createdAt) — unique constraint
-- [ ] Schema Prisma: modelo `Like` (userId, tweetId, createdAt) — unique constraint
-- [ ] Índices: (followerId, followingId), (userId, tweetId), (authorId, createdAt DESC)
-- [ ] `prisma generate` y confirmar tipos generados
+- [x] Schema Prisma: modelo `User` (id, username, email, passwordHash, bio, avatar, createdAt)
+- [x] Schema Prisma: modelo `Tweet` (id, content 280 chars, authorId, createdAt)
+- [x] Schema Prisma: modelo `Follow` (followerId, followingId, createdAt) — unique constraint
+- [x] Schema Prisma: modelo `Like` (userId, tweetId, createdAt) — unique constraint
+- [x] Índices: (followerId, followingId), (userId, tweetId), (authorId, createdAt DESC)
+- [x] `prisma generate` y confirmar tipos generados
 
 ---
 
 ## Auth
 
 ### Backend
-
-- [ ] `POST /api/auth/register` — validación Zod, hash bcrypt, emit JWT
-- [ ] `POST /api/auth/login` — verificar password, emit JWT
-- [ ] `POST /api/auth/logout` — respuesta 200 (JWT stateless, el cliente descarta el token)
-- [ ] `GET /api/auth/me` — devuelve el usuario autenticado
-- [ ] Middleware `requireAuth` — valida JWT en rutas protegidas
-- [ ] Manejo de errores: 400 validación, 401 no auth, 409 email/username duplicado
+- [x] `POST /api/auth/register` — validación Zod, hash bcrypt, emit JWT
+- [x] `POST /api/auth/login` — verificar password, emit JWT
+- [x] `POST /api/auth/logout` — respuesta 200 (JWT stateless, el cliente descarta el token)
+- [x] `GET /api/auth/me` — devuelve el usuario autenticado
+- [x] Middleware `requireAuth` — valida JWT en rutas protegidas
+- [x] Manejo de errores: 400 validación, 401 no auth, 409 email/username duplicado
 - [ ] Tests: register happy path, login incorrecto, token inválido, username duplicado
 
 ### Frontend
-
 - [ ] Pantalla de Login (form RHF + Zod)
 - [ ] Pantalla de Register (form RHF + Zod)
 - [ ] `AuthContext` o store de auth con Zustand
@@ -57,15 +55,13 @@
 ## Tweets
 
 ### Backend
-
-- [ ] `POST /api/tweets` — crear tweet (máx 280 chars), requiere auth
-- [ ] `DELETE /api/tweets/:id` — eliminar propio, requiere auth + ownership check
-- [ ] `GET /api/tweets/:id` — obtener tweet individual
-- [ ] Validación: content requerido, máx 280 chars
+- [x] `POST /api/tweets` — crear tweet (máx 280 chars), requiere auth
+- [x] `DELETE /api/tweets/:id` — eliminar propio, requiere auth + ownership check
+- [x] `GET /api/tweets/:id` — obtener tweet individual
+- [x] Validación: content requerido, máx 280 chars
 - [ ] Tests: crear tweet, eliminar propio, intentar eliminar ajeno (403)
 
 ### Frontend
-
 - [ ] Componente `TweetComposer` — textarea con contador de caracteres
 - [ ] Componente `TweetCard` — muestra autor, contenido, timestamp, likes, acciones
 - [ ] Botón de delete visible solo en tweets propios
@@ -77,13 +73,11 @@
 ## Timeline
 
 ### Backend
-
-- [ ] `GET /api/timeline` — tweets de usuarios seguidos, ordenados por createdAt DESC
-- [ ] Paginación con cursor o offset+limit (`?page=1&limit=20`)
+- [x] `GET /api/timeline` — tweets de usuarios seguidos, ordenados por createdAt DESC
+- [x] Paginación con cursor o offset+limit (`?page=1&limit=20`)
 - [ ] Tests: timeline vacío, timeline con tweets, paginación
 
 ### Frontend
-
 - [ ] Pantalla principal (Home) con el timeline
 - [ ] Infinite scroll o paginación (botón "Cargar más")
 - [ ] Loading skeleton mientras carga
@@ -95,22 +89,19 @@
 ## Interacciones Sociales
 
 ### Backend — Follows
-
-- [ ] `POST /api/follows/:userId` — seguir usuario (requiere auth, no seguirse a uno mismo)
-- [ ] `DELETE /api/follows/:userId` — dejar de seguir
-- [ ] `GET /api/users/:userId/followers` — lista de seguidores
-- [ ] `GET /api/users/:userId/following` — lista de seguidos
+- [x] `POST /api/follows/:userId` — seguir usuario (requiere auth, no seguirse a uno mismo)
+- [x] `DELETE /api/follows/:userId` — dejar de seguir
+- [x] `GET /api/users/:userId/followers` — lista de seguidores
+- [x] `GET /api/users/:userId/following` — lista de seguidos
 - [ ] Tests: follow, unfollow, no auto-follow, lista followers/following
 
 ### Backend — Likes
-
-- [ ] `POST /api/likes/:tweetId` — likear tweet
-- [ ] `DELETE /api/likes/:tweetId` — quitar like
-- [ ] Contador de likes en respuesta de tweets
+- [x] `POST /api/likes/:tweetId` — likear tweet
+- [x] `DELETE /api/likes/:tweetId` — quitar like
+- [x] Contador de likes en respuesta de tweets
 - [ ] Tests: like, unlike, like duplicado (409 o idempotente)
 
 ### Frontend
-
 - [ ] Botón Follow/Unfollow en perfil y en TweetCard
 - [ ] Botón Like con contador animado (Framer Motion)
 - [ ] Optimistic update en likes (TanStack Query)
@@ -121,13 +112,11 @@
 ## Perfil de Usuario
 
 ### Backend
-
-- [ ] `GET /api/users/:username` — perfil público (tweets, contadores)
-- [ ] `PUT /api/users/me` — editar bio y avatar (requiere auth)
+- [x] `GET /api/users/:username` — perfil público (tweets, contadores)
+- [x] `PUT /api/users/me` — editar bio y avatar (requiere auth)
 - [ ] Tests: perfil existente, perfil no encontrado (404)
 
 ### Frontend
-
 - [ ] Pantalla de perfil: avatar, username, bio, contadores (tweets, followers, following)
 - [ ] Lista de tweets propios en el perfil
 - [ ] Editar perfil (modal o inline)
@@ -137,12 +126,10 @@
 ## Búsqueda
 
 ### Backend
-
 - [ ] `GET /api/search/users?q=` — búsqueda por username o nombre (ILIKE)
 - [ ] Tests: búsqueda con resultados, búsqueda vacía
 
 ### Frontend
-
 - [ ] Barra de búsqueda en el layout
 - [ ] Resultados con UserCard (avatar + username + botón follow)
 - [ ] Debounce de 300ms en el input
@@ -211,7 +198,7 @@
 ## Documentación & Polish
 
 - [ ] README Runbook completo y testeado (seguir los pasos desde cero)
-- [ ] `.env.example` con todos los valores y descripciones
+- [x] `.env.example` con todos los valores y descripciones
 - [ ] TECH_DECISIONS.md revisado y completo
 - [ ] Mensajes de commit descriptivos durante todo el desarrollo
 - [ ] Limpiar `console.log` de debug antes de entrega
