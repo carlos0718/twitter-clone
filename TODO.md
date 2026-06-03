@@ -201,6 +201,6 @@
 - [x] `.env.example` con todos los valores y descripciones
 - [x] TECH_DECISIONS.md revisado y completo
 - [x] Mensajes de commit descriptivos durante todo el desarrollo
-- [ ] Limpiar `console.log` de debug antes de entrega
-- [ ] Revisar errores de TypeScript (`tsc --noEmit`)
-- [ ] Revisar errores de ESLint (`npm run lint`)
+- [x] Limpiar `console.log` de debug antes de entrega
+- [x] Revisar errores de TypeScript (`tsc --noEmit`)
+- [x] Revisar errores de ESLint (`npm run lint`)

@@ -4,7 +4,7 @@ import * as likeService from './like.service'
 
 export async function likeHandler(req: AuthRequest, res: Response) {
   try {
-    await likeService.likeTweet(req.userId, req.params.tweetId)
+    await likeService.likeTweet(req.userId, req.params.tweetId as string)
     res.status(201).json({ message: 'Liked' })
   } catch (err) {
     const e = err as Error & { statusCode?: number }
@@ -14,7 +14,7 @@ export async function likeHandler(req: AuthRequest, res: Response) {
 
 export async function unlikeHandler(req: AuthRequest, res: Response) {
   try {
-    await likeService.unlikeTweet(req.userId, req.params.tweetId)
+    await likeService.unlikeTweet(req.userId, req.params.tweetId as string)
     res.status(204).send()
   } catch (err) {
     const e = err as Error & { statusCode?: number }

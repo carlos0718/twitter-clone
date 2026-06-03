@@ -5,7 +5,7 @@ import * as userService from './user.service'
 
 export async function getUserProfileHandler(req: Request & { userId?: string }, res: Response) {
   try {
-    const profile = await userService.getUserProfile(req.params.username, req.userId)
+    const profile = await userService.getUserProfile(req.params.username as string, req.userId)
     res.json({ profile })
   } catch (err) {
     const e = err as Error & { statusCode?: number }
