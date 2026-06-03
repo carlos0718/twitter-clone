@@ -59,7 +59,7 @@
 - [x] `DELETE /api/tweets/:id` — eliminar propio, requiere auth + ownership check
 - [x] `GET /api/tweets/:id` — obtener tweet individual
 - [x] Validación: content requerido, máx 280 chars
-- [ ] Tests: crear tweet, eliminar propio, intentar eliminar ajeno (403)
+- [x] Tests: crear tweet, eliminar propio, intentar eliminar ajeno (403)
 
 ### Frontend
 - [ ] Componente `TweetComposer` — textarea con contador de caracteres
@@ -160,12 +160,12 @@
 ## Testing (objetivo: 80%+ backend)
 
 - [ ] Unit tests: auth.service (register, login, verifyToken)
-- [ ] Unit tests: tweet.service (create, delete, validación ownership)
+- [x] Unit tests: tweet.service (create, delete, validación ownership)
 - [ ] Unit tests: follow.service (follow, unfollow, no self-follow)
 - [ ] Unit tests: like.service (like, unlike, idempotencia)
 - [x] Integration tests: POST /api/auth/register (happy + errors)
 - [x] Integration tests: POST /api/auth/login (happy + errors)
-- [ ] Integration tests: POST /api/tweets (autenticado + no autenticado)
+- [x] Integration tests: POST /api/tweets (autenticado + no autenticado)
 - [ ] Integration tests: GET /api/timeline (con y sin follows)
 - [ ] Integration tests: POST /api/follows/:id
 - [ ] E2E Playwright: register → login → crear tweet → logout
