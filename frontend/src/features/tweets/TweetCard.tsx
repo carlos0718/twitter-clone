@@ -14,10 +14,16 @@ interface Props {
   onFollow?: (authorId: string, isFollowing: boolean) => void
 }
 
-export default function TweetCard({ tweet, isFollowing, onLike, onDelete, onFollow }: Props) {
+export default function TweetCard({ tweet, isFollowing: initialIsFollowing, onLike, onDelete, onFollow }: Props) {
   const { user } = useAuth()
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
+  const [following, setFollowing] = useState(initialIsFollowing ?? false)
   const isOwner = user?.id === tweet.authorId
+
+  function handleFollow() {
+    setFollowing((prev) => !prev)
+    onFollow?.(tweet.authorId, following)
+  }
 
   return (
     <article className="border-b border-border px-4 py-3 hover:bg-accent/30 transition-colors">
@@ -38,11 +44,15 @@ export default function TweetCard({ tweet, isFollowing, onLike, onDelete, onFoll
 
             {!isOwner && onFollow && (
               <button
-                onClick={() => onFollow(tweet.authorId, !!isFollowing)}
-                className="ml-auto text-xs text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
-                aria-label={isFollowing ? 'Dejar de seguir' : 'Seguir'}
+                onClick={handleFollow}
+                className={`ml-auto flex items-center gap-1 text-xs font-medium transition-colors ${
+                  following
+                    ? 'text-foreground hover:text-foreground/70'
+                    : 'text-muted-foreground hover:text-muted-foreground/70'
+                }`}
+                aria-label={following ? 'Dejar de seguir' : 'Seguir'}
               >
-                {isFollowing
+                {following
                   ? <><UserMinus className="h-3.5 w-3.5" /> Siguiendo</>
                   : <><UserPlus className="h-3.5 w-3.5" /> Seguir</>
                 }

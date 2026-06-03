@@ -44,7 +44,6 @@ export default function TimelinePage() {
   const followMutation = useMutation({
     mutationFn: ({ authorId, isFollowing }: { authorId: string; isFollowing: boolean }) =>
       isFollowing ? unfollowUser(authorId) : followUser(authorId),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['timeline'] }),
   })
 
   const likeMutation = useMutation({
