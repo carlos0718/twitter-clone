@@ -153,7 +153,7 @@
 - [x] Follows cruzados entre usuarios
 - [x] Likes cruzados en tweets
 - [x] Ejecutable con `npm run db:seed`
-- [ ] Credenciales de ejemplo documentadas en README
+- [x] Credenciales de ejemplo documentadas en README
 
 ---
 
@@ -197,7 +197,7 @@
 
 ## Documentación & Polish
 
-- [ ] README Runbook completo y testeado (seguir los pasos desde cero)
+- [x] README Runbook completo y testeado (seguir los pasos desde cero)
 - [x] `.env.example` con todos los valores y descripciones
 - [ ] TECH_DECISIONS.md revisado y completo
 - [ ] Mensajes de commit descriptivos durante todo el desarrollo
