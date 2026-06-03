@@ -4,7 +4,7 @@ import { getUserProfileHandler, updateProfileHandler } from './user.controller'
 
 const router = Router()
 
-router.get('/:username', requireAuth, getUserProfileHandler as any)
 router.put('/me', requireAuth, updateProfileHandler as any)
+router.get('/:username', requireAuth, getUserProfileHandler as any)
 
 export default router

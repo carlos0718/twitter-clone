@@ -126,7 +126,7 @@
 ## Búsqueda
 
 ### Backend
-- [ ] `GET /api/search/users?q=` — búsqueda por username o nombre (ILIKE)
+- [x] `GET /api/search/users?q=` — búsqueda por username o nombre (ILIKE)
 - [ ] Tests: búsqueda con resultados, búsqueda vacía
 
 ### Frontend
