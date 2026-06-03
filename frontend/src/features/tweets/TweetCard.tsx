@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Heart, Trash2 } from 'lucide-react'
+import { Heart, Trash2, UserPlus, UserMinus } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { formatDistanceToNow } from '@/lib/date'
 import { useAuth } from '@/features/auth/AuthContext'
@@ -8,11 +8,13 @@ import type { Tweet } from './tweet.types'
 
 interface Props {
   tweet: Tweet
+  isFollowing?: boolean
   onLike?: (tweetId: string, liked: boolean) => void
   onDelete?: (tweetId: string) => void
+  onFollow?: (authorId: string, isFollowing: boolean) => void
 }
 
-export default function TweetCard({ tweet, onLike, onDelete }: Props) {
+export default function TweetCard({ tweet, isFollowing, onLike, onDelete, onFollow }: Props) {
   const { user } = useAuth()
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
   const isOwner = user?.id === tweet.authorId
@@ -33,6 +35,19 @@ export default function TweetCard({ tweet, onLike, onDelete }: Props) {
             </Link>
             <span className="text-muted-foreground text-xs">·</span>
             <span className="text-muted-foreground text-xs">{formatDistanceToNow(tweet.createdAt)}</span>
+
+            {!isOwner && onFollow && (
+              <button
+                onClick={() => onFollow(tweet.authorId, !!isFollowing)}
+                className="ml-auto text-xs text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
+                aria-label={isFollowing ? 'Dejar de seguir' : 'Seguir'}
+              >
+                {isFollowing
+                  ? <><UserMinus className="h-3.5 w-3.5" /> Siguiendo</>
+                  : <><UserPlus className="h-3.5 w-3.5" /> Seguir</>
+                }
+              </button>
+            )}
           </div>
 
           <p className="text-sm mt-1 whitespace-pre-wrap break-words">{tweet.content}</p>

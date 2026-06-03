@@ -3,6 +3,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { getTimeline } from './timeline.api'
 import { useTimelineStream } from './useTimelineStream'
 import { createTweet, deleteTweet, likeTweet, unlikeTweet } from '@/features/tweets/tweet.api'
+import { followUser, unfollowUser } from '@/features/users/user.api'
 import TweetComposer from '@/features/tweets/TweetComposer'
 import TweetCard from '@/features/tweets/TweetCard'
 import type { Tweet } from '@/features/tweets/tweet.types'
@@ -37,6 +38,12 @@ export default function TimelinePage() {
 
   const deleteMutation = useMutation({
     mutationFn: deleteTweet,
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['timeline'] }),
+  })
+
+  const followMutation = useMutation({
+    mutationFn: ({ authorId, isFollowing }: { authorId: string; isFollowing: boolean }) =>
+      isFollowing ? unfollowUser(authorId) : followUser(authorId),
     onSuccess: () => qc.invalidateQueries({ queryKey: ['timeline'] }),
   })
 
@@ -114,8 +121,10 @@ export default function TimelinePage() {
         <TweetCard
           key={tweet.id}
           tweet={tweet}
+          isFollowing={true}
           onLike={(id, liked) => likeMutation.mutate({ id, liked })}
           onDelete={(id) => deleteMutation.mutate(id)}
+          onFollow={(authorId, isFollowing) => followMutation.mutate({ authorId, isFollowing })}
         />
       ))}
 
