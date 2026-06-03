@@ -10,6 +10,7 @@ import followRoutes from './features/follows/follow.routes'
 import likeRoutes from './features/likes/like.routes'
 import userRoutes from './features/users/user.routes'
 import searchRoutes from './features/search/search.routes'
+import streamRoutes from './features/stream/stream.routes'
 
 const app = express()
 
@@ -28,5 +29,6 @@ app.use('/api/follows', followRoutes)
 app.use('/api/likes', likeRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/search', searchRoutes)
+app.use('/api/stream', streamRoutes)
 
 export default app

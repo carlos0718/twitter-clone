@@ -1,4 +1,5 @@
 import { prisma } from '../../shared/utils/prisma'
+import { notifyFollowers } from '../stream/stream.service'
 import type { CreateTweetInput, TweetWithAuthor } from './tweet.types'
 
 export async function createTweet(userId: string, input: CreateTweetInput): Promise<TweetWithAuthor> {
@@ -9,7 +10,9 @@ export async function createTweet(userId: string, input: CreateTweetInput): Prom
       _count: { select: { likes: true } },
     },
   })
-  return formatTweet(tweet)
+  const formatted = formatTweet(tweet)
+  notifyFollowers(userId, { type: 'new_tweet', tweet: formatted })
+  return formatted
 }
 
 export async function deleteTweet(userId: string, tweetId: string): Promise<void> {

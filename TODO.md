@@ -178,10 +178,10 @@
 
 ## Bonus — Real-time (SSE)
 
-- [ ] Endpoint `GET /api/stream` — SSE, requiere auth
-- [ ] Emitir evento cuando usuario seguido publica tweet
-- [ ] Hook `useTimeline` escucha SSE y agrega tweets al feed
-- [ ] Indicador "X nuevos tweets" en lugar de insertar directo (UX Twitter)
+- [x] Endpoint `GET /api/stream` — SSE, requiere auth
+- [x] Emitir evento cuando usuario seguido publica tweet
+- [x] Hook `useTimeline` escucha SSE y agrega tweets al feed
+- [x] Indicador "X nuevos tweets" en lugar de insertar directo (UX Twitter)
 
 ---
 

@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { getTimeline } from './timeline.api'
+import { useTimelineStream } from './useTimelineStream'
 import { createTweet, deleteTweet, likeTweet, unlikeTweet } from '@/features/tweets/tweet.api'
 import TweetComposer from '@/features/tweets/TweetComposer'
 import TweetCard from '@/features/tweets/TweetCard'
@@ -11,6 +12,18 @@ const LIMIT = 20
 export default function TimelinePage() {
   const [page, setPage] = useState(1)
   const qc = useQueryClient()
+
+  const handleNewTweet = useCallback((_tweet: Tweet) => {
+    // don't auto-inject — show the "X new tweets" banner instead
+  }, [])
+
+  const { newCount, resetCount } = useTimelineStream(handleNewTweet)
+
+  function loadNew() {
+    resetCount()
+    setPage(1)
+    qc.invalidateQueries({ queryKey: ['timeline'] })
+  }
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['timeline', page],
@@ -55,6 +68,15 @@ export default function TimelinePage() {
       </header>
 
       <TweetComposer onSubmit={(content) => createMutation.mutateAsync(content)} />
+
+      {newCount > 0 && (
+        <button
+          onClick={loadNew}
+          className="w-full py-2 text-sm text-primary font-medium bg-primary/5 hover:bg-primary/10 transition-colors border-b border-border"
+        >
+          {newCount} nuevo{newCount !== 1 ? 's' : ''} tweet{newCount !== 1 ? 's' : ''} — ver
+        </button>
+      )}
 
       {isLoading && (
         <div className="space-y-0">
