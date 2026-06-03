@@ -42,12 +42,12 @@
 - [x] Tests: register happy path, login incorrecto, token inválido, username duplicado
 
 ### Frontend
-- [ ] Pantalla de Login (form RHF + Zod)
-- [ ] Pantalla de Register (form RHF + Zod)
-- [ ] `AuthContext` o store de auth con Zustand
-- [ ] Persistencia del token en localStorage
-- [ ] Protected route HOC / wrapper para rutas autenticadas
-- [ ] Redirect a login si no hay sesión
+- [x] Pantalla de Login (form RHF + Zod)
+- [x] Pantalla de Register (form RHF + Zod)
+- [x] `AuthContext` o store de auth con Zustand
+- [x] Persistencia del token en localStorage
+- [x] Protected route HOC / wrapper para rutas autenticadas
+- [x] Redirect a login si no hay sesión
 - [ ] Test de integración: flujo login completo
 
 ---
