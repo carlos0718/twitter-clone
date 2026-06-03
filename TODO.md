@@ -93,13 +93,13 @@
 - [x] `DELETE /api/follows/:userId` — dejar de seguir
 - [x] `GET /api/users/:userId/followers` — lista de seguidores
 - [x] `GET /api/users/:userId/following` — lista de seguidos
-- [ ] Tests: follow, unfollow, no auto-follow, lista followers/following
+- [x] Tests: follow, unfollow, no auto-follow, lista followers/following
 
 ### Backend — Likes
 - [x] `POST /api/likes/:tweetId` — likear tweet
 - [x] `DELETE /api/likes/:tweetId` — quitar like
 - [x] Contador de likes en respuesta de tweets
-- [ ] Tests: like, unlike, like duplicado (409 o idempotente)
+- [x] Tests: like, unlike, like duplicado (409 o idempotente)
 
 ### Frontend
 - [ ] Botón Follow/Unfollow en perfil y en TweetCard
@@ -161,13 +161,13 @@
 
 - [ ] Unit tests: auth.service (register, login, verifyToken)
 - [x] Unit tests: tweet.service (create, delete, validación ownership)
-- [ ] Unit tests: follow.service (follow, unfollow, no self-follow)
-- [ ] Unit tests: like.service (like, unlike, idempotencia)
+- [x] Unit tests: follow.service (follow, unfollow, no self-follow)
+- [x] Unit tests: like.service (like, unlike, idempotencia)
 - [x] Integration tests: POST /api/auth/register (happy + errors)
 - [x] Integration tests: POST /api/auth/login (happy + errors)
 - [x] Integration tests: POST /api/tweets (autenticado + no autenticado)
-- [ ] Integration tests: GET /api/timeline (con y sin follows)
-- [ ] Integration tests: POST /api/follows/:id
+- [x] Integration tests: GET /api/timeline (con y sin follows)
+- [x] Integration tests: POST /api/follows/:id
 - [ ] E2E Playwright: register → login → crear tweet → logout
 - [ ] Frontend: test integración Login form
 - [ ] Frontend: test integración TweetComposer
