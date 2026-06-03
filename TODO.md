@@ -48,7 +48,7 @@
 - [x] Persistencia del token en localStorage
 - [x] Protected route HOC / wrapper para rutas autenticadas
 - [x] Redirect a login si no hay sesión
-- [ ] Test de integración: flujo login completo
+- [x] Test de integración: flujo login completo
 
 ---
 
@@ -66,7 +66,7 @@
 - [x] Componente `TweetCard` — muestra autor, contenido, timestamp, likes, acciones
 - [x] Botón de delete visible solo en tweets propios
 - [x] Confirmación antes de eliminar
-- [ ] Test de integración: render TweetCard, submit TweetComposer
+- [x] Test de integración: render TweetCard, submit TweetComposer
 
 ---
 
