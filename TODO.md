@@ -148,11 +148,11 @@
 
 ## Seed Data
 
-- [ ] Al menos 10 usuarios con email y password reales
-- [ ] Cada usuario con bio y varios tweets
-- [ ] Follows cruzados entre usuarios
-- [ ] Likes cruzados en tweets
-- [ ] Ejecutable con `npm run db:seed`
+- [x] Al menos 10 usuarios con email y password reales
+- [x] Cada usuario con bio y varios tweets
+- [x] Follows cruzados entre usuarios
+- [x] Likes cruzados en tweets
+- [x] Ejecutable con `npm run db:seed`
 - [ ] Credenciales de ejemplo documentadas en README
 
 ---
