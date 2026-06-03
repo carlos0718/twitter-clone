@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 const schema = z.object({
   username: z.string().min(3, 'Mínimo 3 caracteres').max(20).regex(/^[a-zA-Z0-9_]+$/, 'Solo letras, números y _'),
   email: z.string().email('Email inválido'),
-  password: z.string().min(6, 'Mínimo 6 caracteres'),
+  password: z.string().min(8, 'Mínimo 8 caracteres'),
 })
 type FormData = z.infer<typeof schema>
 
