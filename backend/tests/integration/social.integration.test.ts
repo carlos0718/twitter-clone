@@ -109,6 +109,32 @@ describe('DELETE /api/likes/:tweetId', () => {
   })
 })
 
+describe('GET /api/follows/:userId/followers', () => {
+  it('returns followers list', async () => {
+    await request(app).post(`/api/follows/${userB.id}`).set('Authorization', `Bearer ${tokenA}`)
+
+    const res = await request(app)
+      .get(`/api/follows/${userB.id}/followers`)
+      .set('Authorization', `Bearer ${tokenA}`)
+
+    expect(res.status).toBe(200)
+    expect(res.body.followers).toBeDefined()
+    expect(res.body.followers.some((f: any) => f.id === userA.id)).toBe(true)
+  })
+
+  it('returns following list', async () => {
+    await request(app).post(`/api/follows/${userB.id}`).set('Authorization', `Bearer ${tokenA}`)
+
+    const res = await request(app)
+      .get(`/api/follows/${userA.id}/following`)
+      .set('Authorization', `Bearer ${tokenA}`)
+
+    expect(res.status).toBe(200)
+    expect(res.body.following).toBeDefined()
+    expect(res.body.following.some((f: any) => f.id === userB.id)).toBe(true)
+  })
+})
+
 describe('GET /api/timeline', () => {
   it('returns empty timeline when not following anyone', async () => {
     const res = await request(app)

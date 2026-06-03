@@ -114,7 +114,7 @@
 ### Backend
 - [x] `GET /api/users/:username` — perfil público (tweets, contadores)
 - [x] `PUT /api/users/me` — editar bio y avatar (requiere auth)
-- [ ] Tests: perfil existente, perfil no encontrado (404)
+- [x] Tests: perfil existente, perfil no encontrado (404)
 
 ### Frontend
 - [ ] Pantalla de perfil: avatar, username, bio, contadores (tweets, followers, following)
@@ -127,7 +127,7 @@
 
 ### Backend
 - [x] `GET /api/search/users?q=` — búsqueda por username o nombre (ILIKE)
-- [ ] Tests: búsqueda con resultados, búsqueda vacía
+- [x] Tests: búsqueda con resultados, búsqueda vacía
 
 ### Frontend
 - [ ] Barra de búsqueda en el layout
@@ -159,7 +159,7 @@
 
 ## Testing (objetivo: 80%+ backend)
 
-- [ ] Unit tests: auth.service (register, login, verifyToken)
+- [x] Unit tests: auth.service (register, login, verifyToken)
 - [x] Unit tests: tweet.service (create, delete, validación ownership)
 - [x] Unit tests: follow.service (follow, unfollow, no self-follow)
 - [x] Unit tests: like.service (like, unlike, idempotencia)
@@ -172,7 +172,7 @@
 - [ ] Frontend: test integración Login form
 - [ ] Frontend: test integración TweetComposer
 - [ ] Frontend: test integración Follow button
-- [ ] Verificar `npm run test:coverage` pasa threshold 80%
+- [x] Verificar `npm run test:coverage` pasa threshold 80%
 
 ---
 
