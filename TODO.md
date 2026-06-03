@@ -39,7 +39,7 @@
 - [x] `GET /api/auth/me` — devuelve el usuario autenticado
 - [x] Middleware `requireAuth` — valida JWT en rutas protegidas
 - [x] Manejo de errores: 400 validación, 401 no auth, 409 email/username duplicado
-- [ ] Tests: register happy path, login incorrecto, token inválido, username duplicado
+- [x] Tests: register happy path, login incorrecto, token inválido, username duplicado
 
 ### Frontend
 - [ ] Pantalla de Login (form RHF + Zod)
@@ -163,8 +163,8 @@
 - [ ] Unit tests: tweet.service (create, delete, validación ownership)
 - [ ] Unit tests: follow.service (follow, unfollow, no self-follow)
 - [ ] Unit tests: like.service (like, unlike, idempotencia)
-- [ ] Integration tests: POST /api/auth/register (happy + errors)
-- [ ] Integration tests: POST /api/auth/login (happy + errors)
+- [x] Integration tests: POST /api/auth/register (happy + errors)
+- [x] Integration tests: POST /api/auth/login (happy + errors)
 - [ ] Integration tests: POST /api/tweets (autenticado + no autenticado)
 - [ ] Integration tests: GET /api/timeline (con y sin follows)
 - [ ] Integration tests: POST /api/follows/:id

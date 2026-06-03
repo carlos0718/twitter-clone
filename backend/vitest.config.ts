@@ -4,9 +4,12 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'node',
+    setupFiles: ['./tests/setup.ts'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'lcov'],
+      include: ['src/features/**/*.ts', 'src/shared/**/*.ts'],
+      exclude: ['src/generated/**', '**/*.types.ts', '**/*.routes.ts'],
       thresholds: {
         lines: 80,
         functions: 80,
