@@ -75,7 +75,7 @@
 ### Backend
 - [x] `GET /api/timeline` — tweets de usuarios seguidos, ordenados por createdAt DESC
 - [x] Paginación con cursor o offset+limit (`?page=1&limit=20`)
-- [ ] Tests: timeline vacío, timeline con tweets, paginación
+- [x] Tests: timeline vacío, timeline con tweets, paginación
 
 ### Frontend
 - [x] Pantalla principal (Home) con el timeline
@@ -105,7 +105,7 @@
 - [x] Botón Follow/Unfollow en perfil y en TweetCard
 - [x] Botón Like con contador animado (Framer Motion)
 - [x] Optimistic update en likes (TanStack Query)
-- [ ] Listado de followers/following en perfil
+- [x] Listado de followers/following en perfil
 
 ---
 
@@ -138,11 +138,11 @@
 
 ## Responsive Design
 
-- [ ] Layout mobile-first (columna única < 640px)
-- [ ] Sidebar izquierda visible en tablet+ (640px+)
-- [ ] Sidebar derecha (trending/sugeridos) en desktop (1024px+)
-- [ ] Navegación inferior en mobile (Home, Search, Profile)
-- [ ] TweetComposer adaptado a mobile (bottom sheet o inline)
+- [x] Layout mobile-first (columna única < 640px)
+- [x] Sidebar izquierda visible en tablet+ (640px+)
+- [x] Sidebar derecha (trending/sugeridos) en desktop (1024px+)
+- [x] Navegación inferior en mobile (Home, Search, Profile)
+- [x] TweetComposer adaptado a mobile (bottom sheet o inline)
 
 ---
 
@@ -169,9 +169,9 @@
 - [x] Integration tests: GET /api/timeline (con y sin follows)
 - [x] Integration tests: POST /api/follows/:id
 - [ ] E2E Playwright: register → login → crear tweet → logout
-- [ ] Frontend: test integración Login form
-- [ ] Frontend: test integración TweetComposer
-- [ ] Frontend: test integración Follow button
+- [x] Frontend: test integración Login form
+- [x] Frontend: test integración TweetComposer
+- [x] Frontend: test integración Follow button
 - [x] Verificar `npm run test:coverage` pasa threshold 80%
 
 ---
@@ -199,8 +199,8 @@
 
 - [x] README Runbook completo y testeado (seguir los pasos desde cero)
 - [x] `.env.example` con todos los valores y descripciones
-- [ ] TECH_DECISIONS.md revisado y completo
-- [ ] Mensajes de commit descriptivos durante todo el desarrollo
+- [x] TECH_DECISIONS.md revisado y completo
+- [x] Mensajes de commit descriptivos durante todo el desarrollo
 - [ ] Limpiar `console.log` de debug antes de entrega
 - [ ] Revisar errores de TypeScript (`tsc --noEmit`)
 - [ ] Revisar errores de ESLint (`npm run lint`)
