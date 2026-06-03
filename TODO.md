@@ -78,11 +78,11 @@
 - [ ] Tests: timeline vacío, timeline con tweets, paginación
 
 ### Frontend
-- [ ] Pantalla principal (Home) con el timeline
-- [ ] Infinite scroll o paginación (botón "Cargar más")
-- [ ] Loading skeleton mientras carga
-- [ ] Estado vacío cuando no seguís a nadie
-- [ ] TanStack Query para cache + refetch automático
+- [x] Pantalla principal (Home) con el timeline
+- [x] Infinite scroll o paginación (botón "Cargar más")
+- [x] Loading skeleton mientras carga
+- [x] Estado vacío cuando no seguís a nadie
+- [x] TanStack Query para cache + refetch automático
 
 ---
 
