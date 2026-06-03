@@ -62,10 +62,10 @@
 - [x] Tests: crear tweet, eliminar propio, intentar eliminar ajeno (403)
 
 ### Frontend
-- [ ] Componente `TweetComposer` — textarea con contador de caracteres
-- [ ] Componente `TweetCard` — muestra autor, contenido, timestamp, likes, acciones
-- [ ] Botón de delete visible solo en tweets propios
-- [ ] Confirmación antes de eliminar
+- [x] Componente `TweetComposer` — textarea con contador de caracteres
+- [x] Componente `TweetCard` — muestra autor, contenido, timestamp, likes, acciones
+- [x] Botón de delete visible solo en tweets propios
+- [x] Confirmación antes de eliminar
 - [ ] Test de integración: render TweetCard, submit TweetComposer
 
 ---
