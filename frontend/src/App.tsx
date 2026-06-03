@@ -5,6 +5,7 @@ import Layout from '@/app/Layout'
 import LoginPage from '@/features/auth/LoginPage'
 import RegisterPage from '@/features/auth/RegisterPage'
 import TimelinePage from '@/features/timeline/TimelinePage'
+import ProfilePage from '@/features/users/ProfilePage'
 
 export default function App() {
   return (
@@ -22,8 +23,8 @@ export default function App() {
         >
           <Route index element={<TimelinePage />} />
           <Route path="search" element={<div className="p-8 text-muted-foreground">Search — coming soon</div>} />
-          <Route path="profile" element={<div className="p-8 text-muted-foreground">Profile — coming soon</div>} />
-          <Route path="profile/:username" element={<div className="p-8 text-muted-foreground">Profile — coming soon</div>} />
+          <Route path="profile" element={<ProfilePage />} />
+          <Route path="profile/:username" element={<ProfilePage />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

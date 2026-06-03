@@ -102,9 +102,9 @@
 - [x] Tests: like, unlike, like duplicado (409 o idempotente)
 
 ### Frontend
-- [ ] Botón Follow/Unfollow en perfil y en TweetCard
-- [ ] Botón Like con contador animado (Framer Motion)
-- [ ] Optimistic update en likes (TanStack Query)
+- [x] Botón Follow/Unfollow en perfil y en TweetCard
+- [x] Botón Like con contador animado (Framer Motion)
+- [x] Optimistic update en likes (TanStack Query)
 - [ ] Listado de followers/following en perfil
 
 ---
@@ -117,9 +117,9 @@
 - [x] Tests: perfil existente, perfil no encontrado (404)
 
 ### Frontend
-- [ ] Pantalla de perfil: avatar, username, bio, contadores (tweets, followers, following)
-- [ ] Lista de tweets propios en el perfil
-- [ ] Editar perfil (modal o inline)
+- [x] Pantalla de perfil: avatar, username, bio, contadores (tweets, followers, following)
+- [x] Lista de tweets propios en el perfil
+- [x] Editar perfil (modal o inline)
 
 ---
 
