@@ -27,17 +27,18 @@ export default function SearchPage() {
   const { user: me } = useAuth()
   const qc = useQueryClient()
   const debouncedQuery = useDebounce(query, 300)
+  const normalizedQuery = debouncedQuery.startsWith('@') ? debouncedQuery.slice(1) : debouncedQuery
 
   const { data: users = [], isLoading } = useQuery({
-    queryKey: ['search', debouncedQuery],
-    queryFn: () => searchUsers(debouncedQuery),
-    enabled: debouncedQuery.trim().length > 0,
+    queryKey: ['search', normalizedQuery],
+    queryFn: () => searchUsers(normalizedQuery),
+    enabled: normalizedQuery.trim().length > 0,
   })
 
   const followMutation = useMutation({
     mutationFn: ({ userId, isFollowing }: { userId: string; isFollowing: boolean }) =>
       isFollowing ? unfollowUser(userId) : followUser(userId),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['search', debouncedQuery] }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['search', normalizedQuery] }),
   })
 
   return (
@@ -71,9 +72,9 @@ export default function SearchPage() {
           </div>
         )}
 
-        {!isLoading && debouncedQuery && users.length === 0 && (
+        {!isLoading && normalizedQuery && users.length === 0 && (
           <div className="p-8 text-center text-muted-foreground text-sm">
-            Sin resultados para "{debouncedQuery}"
+            Sin resultados para "{normalizedQuery}"
           </div>
         )}
 
