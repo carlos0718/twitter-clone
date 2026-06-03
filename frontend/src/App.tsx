@@ -6,6 +6,7 @@ import LoginPage from '@/features/auth/LoginPage'
 import RegisterPage from '@/features/auth/RegisterPage'
 import TimelinePage from '@/features/timeline/TimelinePage'
 import ProfilePage from '@/features/users/ProfilePage'
+import SearchPage from '@/features/search/SearchPage'
 
 export default function App() {
   return (
@@ -22,7 +23,7 @@ export default function App() {
           }
         >
           <Route index element={<TimelinePage />} />
-          <Route path="search" element={<div className="p-8 text-muted-foreground">Search — coming soon</div>} />
+          <Route path="search" element={<SearchPage />} />
           <Route path="profile" element={<ProfilePage />} />
           <Route path="profile/:username" element={<ProfilePage />} />
         </Route>

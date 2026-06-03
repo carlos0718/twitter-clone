@@ -130,9 +130,9 @@
 - [x] Tests: búsqueda con resultados, búsqueda vacía
 
 ### Frontend
-- [ ] Barra de búsqueda en el layout
-- [ ] Resultados con UserCard (avatar + username + botón follow)
-- [ ] Debounce de 300ms en el input
+- [x] Barra de búsqueda en el layout
+- [x] Resultados con UserCard (avatar + username + botón follow)
+- [x] Debounce de 300ms en el input
 
 ---
 
