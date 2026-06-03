@@ -188,9 +188,9 @@
 ## Bonus — Docker
 
 - [x] `docker-compose.yml` creado (PostgreSQL + API + Frontend)
-- [ ] `backend/Dockerfile`
-- [ ] `frontend/Dockerfile` (multi-stage: build + nginx serve)
-- [ ] `docker compose up --build` levanta todo sin pasos manuales
+- [x] `backend/Dockerfile`
+- [x] `frontend/Dockerfile` (multi-stage: build + nginx serve)
+- [x] `docker compose up --build` levanta todo sin pasos manuales
 - [ ] Seed ejecutado automáticamente en el entrypoint de la API
 
 ---

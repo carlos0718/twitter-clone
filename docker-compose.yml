@@ -12,6 +12,11 @@ services:
       - '5432:5432'
     volumes:
       - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   api:
     build:
@@ -22,12 +27,13 @@ services:
       DATABASE_URL: postgresql://postgres:postgres@db:5432/twitter_clone
       JWT_SECRET: super-secret-jwt-key-for-docker-compose
       JWT_EXPIRES_IN: 7d
-      PORT: 3001
+      PORT: 3000
       NODE_ENV: production
     ports:
-      - '3001:3001'
+      - '3000:3000'
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   web:
     build:
