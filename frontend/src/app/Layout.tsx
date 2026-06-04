@@ -1,6 +1,7 @@
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
-import { Home, Search, User, LogOut } from 'lucide-react'
+import { Home, Search, User, LogOut, Sun, Moon } from 'lucide-react'
 import { useAuth } from '@/features/auth/AuthContext'
+import { useTheme } from '@/lib/useTheme'
 import RightSidebar from './RightSidebar'
 
 const navItems = [
@@ -12,6 +13,7 @@ const navItems = [
 export default function Layout() {
   const { user, logout } = useAuth()
   const navigate = useNavigate()
+  const { theme, toggle } = useTheme()
 
   function handleLogout() {
     logout()
@@ -68,6 +70,19 @@ export default function Layout() {
                 </div>
               </NavLink>
               <button
+                onClick={toggle}
+                className="flex items-center gap-4 px-3 py-3 rounded-full text-muted-foreground hover:bg-accent hover:text-foreground transition-colors w-fit lg:w-full"
+                aria-label="Cambiar tema"
+              >
+                {theme === 'dark'
+                  ? <Sun className="h-6 w-6 shrink-0" />
+                  : <Moon className="h-6 w-6 shrink-0" />
+                }
+                <span className="hidden lg:block text-lg">
+                  {theme === 'dark' ? 'Modo claro' : 'Modo oscuro'}
+                </span>
+              </button>
+              <button
                 onClick={handleLogout}
                 className="flex items-center gap-4 px-3 py-3 rounded-full text-muted-foreground hover:bg-accent hover:text-foreground transition-colors w-fit lg:w-full"
               >
@@ -89,6 +104,15 @@ export default function Layout() {
         </div>
 
       </div>
+
+      {/* Theme toggle — mobile only, top-right corner */}
+      <button
+        onClick={toggle}
+        aria-label="Cambiar tema"
+        className="sm:hidden fixed top-3 right-3 z-50 h-9 w-9 rounded-full bg-background border border-border flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors shadow-sm"
+      >
+        {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+      </button>
 
       {/* Bottom nav — mobile only */}
       <nav className="sm:hidden fixed bottom-0 left-0 right-0 border-t border-border bg-background flex justify-around py-3 z-50">
