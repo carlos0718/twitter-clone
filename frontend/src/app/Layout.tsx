@@ -78,8 +78,8 @@ export default function Layout() {
           )}
         </aside>
 
-        {/* Main content */}
-        <main className="flex-1 min-w-0 border-r border-border min-h-screen max-w-[600px]">
+        {/* Main content — pb-16 on mobile to clear fixed bottom nav */}
+        <main className="flex-1 min-w-0 border-r border-border min-h-screen max-w-[600px] pb-16 sm:pb-0">
           <Outlet />
         </main>
 
@@ -111,6 +111,13 @@ export default function Layout() {
             )}
           </NavLink>
         ))}
+        <button
+          onClick={handleLogout}
+          className="flex flex-col items-center gap-0.5 text-xs text-muted-foreground"
+        >
+          <LogOut className="h-6 w-6" />
+          <span>Salir</span>
+        </button>
       </nav>
     </div>
   )
