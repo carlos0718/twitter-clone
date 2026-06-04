@@ -109,7 +109,7 @@ export default function Layout() {
       <button
         onClick={toggle}
         aria-label="Cambiar tema"
-        className="sm:hidden fixed top-3 right-3 z-50 h-9 w-9 rounded-full bg-background border border-border flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors shadow-sm"
+        className="sm:hidden fixed top-2.5 right-3 z-50 h-8 w-8 rounded-full bg-background border border-border flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors shadow-sm"
       >
         {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
       </button>
