@@ -150,10 +150,17 @@ Levanta PostgreSQL + API + Frontend con un solo `docker compose up --build`. Sim
 
 ## Herramientas de AI usadas
 
-- **Claude Code**: setup inicial del proyecto (scaffolding, estructura de carpetas, archivos base), generación de boilerplate de tests, revisión de código.
+- **Claude Code**: setup inicial del proyecto (scaffolding, estructura de carpetas, archivos base), generación de boilerplate de tests, revisión de código, implementación de features completos (backend + frontend), corrección de bugs y mejoras de UI/UX.
 - **Claude Sonnet**: consultas de arquitectura, revisión de decisiones técnicas, generación de seed data realista.
 
-El flujo de trabajo fue: diseñar la estructura y las interfaces a mano → delegar la generación de boilerplate a AI → revisar y ajustar el output → iterar.
+### Skills personalizados utilizados
+
+Se utilizaron skills creados por el autor del proyecto para establecer un flujo de trabajo limpio y siguiendo buenas prácticas de desarrollo:
+
+- **`/new-project`**: scaffoldeó el repositorio completo desde cero — estructura feature-based en backend y frontend, archivos de configuración (CLAUDE.md, README.md, TECH_DECISIONS.md, TODO.md, docker-compose.yml, .gitignore) y stack inicial instalado y configurado.
+- **`/init`**: inicializó el CLAUDE.md con las convenciones del codebase, arquitectura y comandos frecuentes, asegurando que Claude Code mantuviera coherencia en cada sesión de trabajo.
+
+El flujo de trabajo fue: usar `/new-project` para arrancar con estructura sólida → implementar features iterativamente con Claude Code → commitear por historia de usuario (un commit + push por feature) → revisar y ajustar el output → iterar hasta completar el TODO.
 
 ---
 
