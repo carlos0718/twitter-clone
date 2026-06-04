@@ -135,3 +135,10 @@ twitter-clone/
 ├── TECH_DECISIONS.md
 └── TODO.md
 ```
+
+---
+
+## Autor
+
+**Carlos Jesus**
+[portfolio-master-carlos-jesus.vercel.app](https://portfolio-master-carlos-jesus.vercel.app/)

@@ -68,3 +68,10 @@ Ver `backend/.env.example`. Nunca commitear `.env`.
 - **Early returns** — evitar pirámides de if/else
 - **Tipado explícito** — props tipadas, sin `any`
 - **Funciones cortas** — máximo ~30 líneas por función, partir en helpers si crece
+
+---
+
+## Autor
+
+**Carlos Jesus**
+[portfolio-master-carlos-jesus.vercel.app](https://portfolio-master-carlos-jesus.vercel.app/)

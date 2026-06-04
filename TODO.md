@@ -1,5 +1,7 @@
 # TODO — The Flock (Twitter Clone)
 
+> **Autor:** Carlos Jesus — [portfolio-master-carlos-jesus.vercel.app](https://portfolio-master-carlos-jesus.vercel.app/)
+
 > Challenge de 72 horas. Rubrica: Funcionalidad 25% · Código 20% · Testing 25% · Proceso 15% · Docs 10% · Bonus 5%
 > Orden sugerido: Setup → Auth → Tweets → Social → Timeline → Search → Bonus → Polish
 

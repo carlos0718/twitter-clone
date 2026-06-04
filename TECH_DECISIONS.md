@@ -173,3 +173,10 @@ El flujo de trabajo fue: usar `/new-project` para arrancar con estructura sólid
 | JWT sin blacklist | Tokens no revocables hasta expirar | Redis para blacklist — agrega complejidad |
 | Imágenes no implementadas | Solo texto en tweets | Upload a S3/Cloudflare R2 (bonus descartado por tiempo) |
 | Notificaciones no implementadas | SSE cubre solo timeline | Sistema de notificaciones completo — demasiado para 72h |
+
+---
+
+## Autor
+
+**Carlos Jesus**
+[portfolio-master-carlos-jesus.vercel.app](https://portfolio-master-carlos-jesus.vercel.app/)
