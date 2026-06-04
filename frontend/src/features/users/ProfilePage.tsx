@@ -102,7 +102,7 @@ export default function ProfilePage() {
 
   return (
     <div>
-      <header className="sticky top-0 bg-background/80 backdrop-blur border-b border-border px-4 py-3 z-10">
+      <header className="sticky top-0 bg-background/80 backdrop-blur border-b border-border px-4 pr-12 sm:pr-4 py-3 z-10">
         <h1 className="font-semibold text-base">@{profile.username}</h1>
       </header>
 
