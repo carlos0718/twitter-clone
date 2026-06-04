@@ -1,17 +1,24 @@
 import { useState } from 'react'
-import { useParams, Navigate } from 'react-router-dom'
+import { useParams, Navigate, Link } from 'react-router-dom'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { getUserProfile, followUser, unfollowUser, updateProfile } from './user.api'
+import {
+  getUserProfile, getFollowers, getFollowing,
+  followUser, unfollowUser, updateProfile,
+  type FollowUser,
+} from './user.api'
 import { deleteTweet, likeTweet, unlikeTweet } from '@/features/tweets/tweet.api'
 import TweetCard from '@/features/tweets/TweetCard'
 import { useAuth } from '@/features/auth/AuthContext'
 import { Button } from '@/components/ui/button'
 import type { Tweet } from '@/features/tweets/tweet.types'
 
+type Tab = 'tweets' | 'followers' | 'following'
+
 export default function ProfilePage() {
   const { username } = useParams<{ username: string }>()
   const { user: me, setUser } = useAuth()
   const qc = useQueryClient()
+  const [activeTab, setActiveTab] = useState<Tab>('tweets')
   const [editOpen, setEditOpen] = useState(false)
   const [bio, setBio] = useState('')
 
@@ -21,6 +28,18 @@ export default function ProfilePage() {
   const { data: profile, isLoading } = useQuery({
     queryKey: ['profile', targetUsername],
     queryFn: () => getUserProfile(targetUsername),
+  })
+
+  const { data: followers = [] } = useQuery({
+    queryKey: ['followers', profile?.id],
+    queryFn: () => getFollowers(profile!.id),
+    enabled: !!profile?.id && activeTab === 'followers',
+  })
+
+  const { data: following = [] } = useQuery({
+    queryKey: ['following', profile?.id],
+    queryFn: () => getFollowing(profile!.id),
+    enabled: !!profile?.id && activeTab === 'following',
   })
 
   const followMutation = useMutation({
@@ -63,6 +82,12 @@ export default function ProfilePage() {
 
   const isOwnProfile = me?.username === targetUsername
 
+  const tabs: { key: Tab; label: string; count?: number }[] = [
+    { key: 'tweets', label: 'Tweets', count: profile?.tweetsCount },
+    { key: 'followers', label: 'Seguidores', count: profile?.followersCount },
+    { key: 'following', label: 'Siguiendo', count: profile?.followingCount },
+  ]
+
   if (isLoading) {
     return (
       <div className="animate-pulse p-4 space-y-4">
@@ -87,7 +112,6 @@ export default function ProfilePage() {
           <div className="h-16 w-16 rounded-full bg-primary/20 flex items-center justify-center text-2xl font-bold">
             {profile.username[0].toUpperCase()}
           </div>
-
           <div className="flex gap-2">
             {isOwnProfile ? (
               <Button variant="outline" size="sm" onClick={() => { setBio(profile.bio ?? ''); setEditOpen(true) }}>
@@ -110,15 +134,56 @@ export default function ProfilePage() {
           <p className="font-bold text-base">@{profile.username}</p>
           {profile.bio && <p className="text-sm text-muted-foreground mt-1">{profile.bio}</p>}
         </div>
-
-        <div className="flex gap-4 text-sm">
-          <span><strong>{profile.followingCount}</strong> <span className="text-muted-foreground">siguiendo</span></span>
-          <span><strong>{profile.followersCount}</strong> <span className="text-muted-foreground">seguidores</span></span>
-          <span><strong>{profile.tweetsCount}</strong> <span className="text-muted-foreground">tweets</span></span>
-        </div>
       </div>
 
-      {/* Edit modal */}
+      {/* Tabs */}
+      <div className="flex border-b border-border">
+        {tabs.map(({ key, label, count }) => (
+          <button
+            key={key}
+            onClick={() => setActiveTab(key)}
+            className={`flex-1 py-3 text-sm font-medium transition-colors relative ${
+              activeTab === key
+                ? 'text-foreground'
+                : 'text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            {label}
+            {count !== undefined && (
+              <span className="ml-1 text-xs text-muted-foreground">({count})</span>
+            )}
+            {activeTab === key && (
+              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-0.5 bg-primary rounded-full" />
+            )}
+          </button>
+        ))}
+      </div>
+
+      {/* Tab content */}
+      {activeTab === 'tweets' && (
+        <>
+          {profile.tweets.length === 0 ? (
+            <div className="p-8 text-center text-muted-foreground text-sm">
+              {isOwnProfile ? 'Publicá tu primer tweet.' : 'Todavía no hay tweets.'}
+            </div>
+          ) : (
+            profile.tweets.map((tweet) => (
+              <TweetCard
+                key={tweet.id}
+                tweet={tweet}
+                onLike={(id, liked) => likeMutation.mutate({ id, liked })}
+                onDelete={(id) => deleteMutation.mutate(id)}
+              />
+            ))
+          )}
+        </>
+      )}
+
+      {(activeTab === 'followers' || activeTab === 'following') && (
+        <UserList users={activeTab === 'followers' ? followers : following} />
+      )}
+
+      {/* Edit bio modal */}
       {editOpen && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
           <div className="bg-background rounded-lg w-full max-w-sm space-y-4 p-6">
@@ -143,22 +208,32 @@ export default function ProfilePage() {
           </div>
         </div>
       )}
+    </div>
+  )
+}
 
-      {/* Tweets */}
-      {profile.tweets.length === 0 ? (
-        <div className="p-8 text-center text-muted-foreground text-sm">
-          {isOwnProfile ? 'Publicá tu primer tweet.' : 'Todavía no hay tweets.'}
-        </div>
-      ) : (
-        profile.tweets.map((tweet) => (
-          <TweetCard
-            key={tweet.id}
-            tweet={tweet}
-            onLike={(id, liked) => likeMutation.mutate({ id, liked })}
-            onDelete={(id) => deleteMutation.mutate(id)}
-          />
-        ))
-      )}
+function UserList({ users }: { users: FollowUser[] }) {
+  if (users.length === 0) {
+    return <div className="p-8 text-center text-muted-foreground text-sm">Sin usuarios aún.</div>
+  }
+
+  return (
+    <div>
+      {users.map((u) => (
+        <Link
+          key={u.id}
+          to={`/profile/${u.username}`}
+          className="flex items-center gap-3 px-4 py-3 border-b border-border hover:bg-accent/30 transition-colors"
+        >
+          <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center text-sm font-semibold shrink-0">
+            {u.username[0].toUpperCase()}
+          </div>
+          <div className="min-w-0">
+            <p className="text-sm font-medium">@{u.username}</p>
+            {u.bio && <p className="text-xs text-muted-foreground truncate">{u.bio}</p>}
+          </div>
+        </Link>
+      ))}
     </div>
   )
 }

@@ -23,6 +23,23 @@ export async function updateProfile(data: { bio?: string; avatar?: string }): Pr
   await api.put('/users/me', data)
 }
 
+export interface FollowUser {
+  id: string
+  username: string
+  avatar: string | null
+  bio: string | null
+}
+
+export async function getFollowers(userId: string): Promise<FollowUser[]> {
+  const res = await api.get<{ followers: FollowUser[] }>(`/follows/${userId}/followers`)
+  return res.data.followers
+}
+
+export async function getFollowing(userId: string): Promise<FollowUser[]> {
+  const res = await api.get<{ following: FollowUser[] }>(`/follows/${userId}/following`)
+  return res.data.following
+}
+
 export async function followUser(userId: string): Promise<void> {
   await api.post(`/follows/${userId}`)
 }
